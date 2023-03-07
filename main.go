@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/perocha/internal/salesforce_api"
+	salesforce_api "github.com/perocha/donatego/internal"
 	"github.com/spf13/viper"
 )
 
@@ -30,13 +30,17 @@ func main() {
 	fmt.Println(securityToken)
 
 	// Create a new Salesforce client
-	sf := salesforce_api.NewSalesforceClient("https://login.salesforce.com", clientID, "52.0")
+	sf, err := salesforce_api.NewClient("https://login.salesforce.com", clientID, "52.0")
+	if err != nil {
+		panic(err)
+	}
 
 	// Authenticate with Salesforce
 	sf_err := sf.Authenticate(username, password, securityToken)
 	if sf_err != nil {
 		panic(sf_err)
 	}
+
 	/*
 		// Query Salesforce
 		records, err := sf.Query("SELECT Id, Name FROM Contact")
