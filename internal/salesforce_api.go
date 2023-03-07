@@ -24,7 +24,7 @@ func (c *Client) Authenticate(username string, password string, securityToken st
 	return nil
 }
 
-/*
+// Query method deals with the query to Salesforce.
 func (c *Client) Query(query string) ([]map[string]interface{}, error) {
 	res, err := c.sforce.Query(query)
 	if err != nil {
@@ -34,7 +34,8 @@ func (c *Client) Query(query string) ([]map[string]interface{}, error) {
 	var records []map[string]interface{}
 	for _, obj := range res.Records {
 		record := make(map[string]interface{})
-		for key, val := range obj.MapData {
+		for key := range obj {
+			val := obj[key]
 			record[key] = val
 		}
 		records = append(records, record)
@@ -42,7 +43,7 @@ func (c *Client) Query(query string) ([]map[string]interface{}, error) {
 
 	return records, nil
 }
-*/
+
 /*
 func main() {
 	// Set the configuration file name.

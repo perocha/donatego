@@ -41,11 +41,11 @@ func main() {
 		panic(sf_err)
 	}
 
-	/*
-		// Query Salesforce
-		records, err := sf.Query("SELECT Id, Name FROM Contact")
-		if err != nil {
-			panic(err)
-		}
-	*/
+	// Query Salesforce
+	records, err := sf.Query("SELECT Id, Name FROM Contact")
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println(records)
 }
